@@ -3,11 +3,14 @@
  */
 package work.waynelee.captcha;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import work.waynelee.captcha.properties.CaptchaProperties;
+import work.waynelee.captcha.service.CaptchaService;
+import work.waynelee.captcha.service.CaptchaServiceImpl;
 
 /**
  *
@@ -17,14 +20,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({CaptchaProperties.class})
 public class CaptchaAutoConfiguration {
-	
-	@Autowired
-	private CaptchaProperties captchaProperties;
-	
+
 	@Bean
 	@ConditionalOnMissingBean(CaptchaService.class)  
 	public CaptchaService captchaService(){
-		return new CaptchaService(captchaProperties);
+		return new CaptchaServiceImpl();
 	}
-	
 }

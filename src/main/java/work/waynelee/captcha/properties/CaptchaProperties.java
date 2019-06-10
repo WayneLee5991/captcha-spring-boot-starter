@@ -1,7 +1,7 @@
 /**
  * 
  */
-package work.waynelee.captcha;
+package work.waynelee.captcha.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -20,19 +20,19 @@ public class CaptchaProperties {
 	private Integer height = 48;
 	
 	//验证码图片的位数
-	private Integer length = 5;
+	private Integer length = 4;
 	
 	//验证码图片的字符类型
 	private CharTypeEnum charType = CharTypeEnum.TYPE_DEFAULT;
 	
+	//生成的验证码图片类型
+	private CaptchaType captchaType = CaptchaType.PNG;
+	
 	//缓存的名称
 	private String captchaKey = "captcha";
-	
-	//验证码的存储方式，默认ehcache
-	private CaptchaStorageEnum captchaStorageType = CaptchaStorageEnum.EHCACHE;
 
-	//验证码过期时间，只有当存储方式设置为redis时生效，默认为5分钟
-	private long expireTime = 5*60;
+	//验证码过期时间，默认为5分钟
+	private int expireTimeInSeconds = 300;
 
 	public Integer getWidth() {
 		return width;
@@ -66,6 +66,14 @@ public class CaptchaProperties {
 		this.charType = charType;
 	}
 
+	public CaptchaType getCaptchaType() {
+		return captchaType;
+	}
+
+	public void setCaptchaType(CaptchaType captchaType) {
+		this.captchaType = captchaType;
+	}
+
 	public String getCaptchaKey() {
 		return captchaKey;
 	}
@@ -74,20 +82,12 @@ public class CaptchaProperties {
 		this.captchaKey = captchaKey;
 	}
 
-	public CaptchaStorageEnum getCaptchaStorageType() {
-		return captchaStorageType;
+	public int getExpireTimeInSeconds() {
+		return expireTimeInSeconds;
 	}
 
-	public void setCaptchaStorageType(CaptchaStorageEnum captchaStorageType) {
-		this.captchaStorageType = captchaStorageType;
+	public void setExpireTimeInSeconds(int expireTimeInSeconds) {
+		this.expireTimeInSeconds = expireTimeInSeconds;
 	}
 
-	public long getExpireTime() {
-		return expireTime;
-	}
-
-	public void setExpireTime(long expireTime) {
-		this.expireTime = expireTime;
-	}
-	
 }

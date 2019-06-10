@@ -1,7 +1,7 @@
 /**
  * 
  */
-package work.waynelee.captcha;
+package work.waynelee.captcha.properties;
 
 /**
  *
